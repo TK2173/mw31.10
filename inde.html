@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#071625">
+<title>Blue Atlas — Для мамы</title>
+<style>
+:root {
+  --bg:#071625;
+  --panel:#0d263d;
+  --blue:#9dcbea;
+  --gold:#e5c98c;
+  --white:#f0f7ff;
+  --muted:#b7d0e3;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  min-height:100vh;
+  padding:24px 14px 40px;
+  color:var(--white);
+  background:radial-gradient(ellipse at top,#153e5b,var(--bg) 70%);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+main { width:min(900px,100%); margin:auto; }
+header { text-align:center; margin:15px 0 26px; }
+.eyebrow {
+  color:var(--blue);
+  font-size:11px;
+  letter-spacing:3px;
+}
+h1 {
+  font:500 clamp(30px,7vw,54px)/1.15 Georgia,serif;
+  margin:15px 0;
+}
+.subtitle { color:var(--muted); }
+.shell {
+  padding:clamp(12px,3vw,28px);
+  background:linear-gradient(145deg,#12344e,#091c2e);
+  border:1px solid #315a79;
+  border-radius:26px;
+  box-shadow:0 24px 70px #0005;
+}
+.globe { display:block; width:100%; max-width:580px; margin:auto; }
+.hotspot { cursor:pointer; outline:none; }
+.hotspot .halo { fill:var(--gold); opacity:.2; }
+.hotspot .dot { fill:#f8d995; stroke:#fff2c9; stroke-width:1.5; }
+.hotspot:hover .halo,.hotspot:focus .halo { opacity:.55; }
+.place-label {
+  fill:#f3dda9;
+  font:12px -apple-system,BlinkMacSystemFont,sans-serif;
+  paint-order:stroke;
+  stroke:#102d46;
+  stroke-width:3px;
+  stroke-linejoin:round;
+}
+.places {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.place {
+  border:1px solid #315a79;
+  border-radius:14px;
+  background:#102d46;
+  color:var(--white);
+  padding:13px 10px;
+  font:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+.place:hover,.place:focus-visible {
+  border-color:var(--gold);
+  background:#173c59;
+}
+.place strong { display:block; font-size:14px; }
+.place small { display:block; color:var(--muted); margin-top:5px; }
+footer {
+  text-align:center;
+  margin:22px 0;
+  color:#739bb8;
+  font-size:11px;
+  letter-spacing:2px;
+}
+.modal {
+  position:fixed;
+  inset:0;
+  z-index:5;
+  display:none;
+  place-items:center;
+  padding:18px;
+  background:#020a12df;
+  backdrop-filter:blur(12px);
+}
+.modal.open { display:grid; }
+.dialog {
+  position:relative;
+  width:min(650px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:14px;
+  background:#102d46;
+  border:1px solid #477a9a;
+  border-radius:22px;
+}
+.dialog h2 {
+  font:500 27px Georgia,serif;
+  margin:8px 48px 16px 6px;
+}
+.close {
+  position:absolute;
+  top:12px; right:12px;
+  width:40px; height:40px;
+  border-radius:50%;
+  border:1px solid #477a9a;
+  background:#092238;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+.photo-frame {
+  min-height:220px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border-radius:15px;
+  background:#081a2b;
+}
+.photo-frame img {
+  display:block;
+  width:100%;
+  max-height:70vh;
+  object-fit:contain;
+}
+.empty {
+  padding:35px 15px;
+  color:var(--muted);
+  text-align:center;
+}
+.empty span {
+  display:block;
+  margin-bottom:12px;
+  color:var(--gold);
+  font-size:40px;
+}
+@media(max-width:620px) {
+  .places { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .place { padding:14px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">BLUE ATLAS · ЛИЧНЫЕ ВОСПОМИНАНИЯ</div>
+    <h1>Мама, ты — мой целый мир</h1>
+    <p class="subtitle">С днём рождения!</p>
+  </header>
+
+  <section class="shell">
+    <svg class="globe" viewBox="0 0 520 430"
+         role="img" aria-label="Глобус с четырьмя отмеченными местами">
+      <defs>
+        <radialGradient id="sea" cx="33%" cy="24%" r="78%">
+          <stop offset="0%" stop-color="#347ba4"/>
+          <stop offset="55%" stop-color="#155071"/>
+          <stop offset="100%" stop-color="#071c31"/>
+        </radialGradient>
+        <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#a8d0bd"/>
+          <stop offset="100%" stop-color="#548e8a"/>
+        </linearGradient>
+        <clipPath id="sphere">
+          <circle cx="260" cy="210" r="176"/>
+        </clipPath>
+      </defs>
+
+      <circle cx="260" cy="210" r="184" fill="#5baddb" opacity=".08"/>
+      <circle cx="260" cy="210" r="176" fill="url(#sea)"
+              stroke="#75b9e4" stroke-width="1.8"/>
+
+      <g clip-path="url(#sphere)">
+        <g fill="none" stroke="#8ac5e7" stroke-width="1" opacity=".45">
+          <ellipse cx="260" cy="210" rx="62" ry="176"/>
+          <ellipse cx="260" cy="210" rx="121" ry="176"/>
+          <ellipse cx="260" cy="210" rx="158" ry="176"/>
+          <ellipse cx="260" cy="210" rx="176" ry="61"/>
+          <ellipse cx="260" cy="210" rx="176" ry="112"/>
+          <path d="M84 210H436 M100 148H420 M100 272H420 M260 34V386"/>
+        </g>
+        <g fill="url(#land)" stroke="#c2dfc9" stroke-width="1">
+          <path d="M101 91L122 70 148 65 165 78 186 75 205 91 200 109 184 119 179 137 163 145 153 166 139 169 128 150 111 140 103 120 89 110Z"/>
+          <path d="M164 164L180 160 192 174 195 190 207 201 201 220 190 232 184 252 174 246 169 224 160 207 157 188Z"/>
+          <path d="M204 231L217 239 225 261 219 284 208 307 199 293 201 271 193 253Z"/>
+          <path d="M222 253L243 250 258 265 260 287 249 308 244 336 232 365 221 351 220 326 210 301 211 277Z"/>
+          <path d="M237 91L254 78 271 83 284 74 301 83 318 78 337 90 354 84 378 96 395 111 390 128 372 132 362 145 343 142 330 156 314 152 300 165 286 155 279 136 263 130 252 114 236 113Z"/>
+          <path d="M248 137L267 133 282 146 286 162 275 173 263 164 253 154Z"/>
+          <path d="M307 165L325 158 343 169 349 190 338 204 327 198 321 181 307 178Z"/>
+          <path d="M278 171L300 166 317 181 319 203 309 224 300 249 286 273 275 260 270 236 260 216 263 195Z"/>
+          <path d="M356 265L378 258 397 270 399 287 383 299 364 294 352 280Z"/>
+          <path d="M405 211L414 216 411 227 403 222Z"/>
+          <path d="M378 178L385 181 382 188 376 184Z"/>
+        </g>
+      </g>
+
+      <g class="hotspot" role="button" tabindex="0"
+         aria-label="Питтсбург" data-place="pittsburgh">
+        <circle class="halo" cx="160" cy="129" r="12"/>
+        <circle class="dot" cx="160" cy="129" r="4"/>
+        <path d="M160 129L122 113" stroke="#e5c98c"/>
+        <text class="place-label" x="116" y="109" text-anchor="end">Питтсбург</text>
+      </g>
+      <g class="hotspot" role="button" tabindex="0"
+         aria-label="Беларусь" data-place="belarus">
+        <circle class="halo" cx="307" cy="112" r="12"/>
+        <circle class="dot" cx="307" cy="112" r="4"/>
+        <path d="M307 112L342 92" stroke="#e5c98c"/>
+        <text class="place-label" x="346" y="89">Беларусь</text>
+      </g>
+      <g class="hotspot" role="button" tabindex="0"
+         aria-label="Кипр" data-place="cyprus">
+        <circle class="halo" cx="302" cy="149" r="12"/>
+        <circle class="dot" cx="302" cy="149" r="4"/>
+        <path d="M302 149L335 160" stroke="#e5c98c"/>
+        <text class="place-label" x="340" y="164">Кипр</text>
+      </g>
+      <g class="hotspot" role="button" tabindex="0"
+         aria-label="Мальдивы" data-place="maldives">
+        <circle class="halo" cx="321" cy="253" r="12"/>
+        <circle class="dot" cx="321" cy="253" r="4"/>
+        <path d="M321 253L349 276" stroke="#e5c98c"/>
+        <text class="place-label" x="353" y="282">Мальдивы</text>
+      </g>
+    </svg>
+
+    <div class="places">
+      <button class="place" data-place="belarus"><strong>Беларусь</strong><small>Европа</small></button>
+      <button class="place" data-place="cyprus"><strong>Кипр</strong><small>Средиземное море</small></button>
+      <button class="place" data-place="maldives"><strong>Мальдивы</strong><small>Индийский океан</small></button>
+      <button class="place" data-place="pittsburgh"><strong>Питтсбург 🇺🇸</strong><small>США</small></button>
+    </div>
+  </section>
+  <footer>С ЛЮБОВЬЮ · ДЛЯ МАМЫ</footer>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="dialog">
+    <button class="close" id="close" aria-label="Закрыть">×</button>
+    <h2 id="modalTitle"></h2>
+    <div class="photo-frame">
+      <img id="photo" alt="" hidden>
+      <div class="empty" id="empty">
+        <span>✦</span>
+        Фото для этого места появится здесь
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const places = {
+  belarus: { title: "Беларусь", photo: "photos/belarus.jpg" },
+  cyprus: { title: "Кипр", photo: "photos/cyprus.jpg" },
+  maldives: { title: "Мальдивы", photo: "photos/maldives.jpg" },
+  pittsburgh: { title: "Питтсбург", photo: "photos/pittsburgh.jpg" }
+};
+
+const modal = document.getElementById("modal");
+const title = document.getElementById("modalTitle");
+const photo = document.getElementById("photo");
+const empty = document.getElementById("empty");
+
+function openPlace(id) {
+  const place = places[id];
+  if (!place) return;
+
+  title.textContent = place.title;
+  photo.hidden = true;
+  empty.style.display = "block";
+  photo.onload = () => {
+    photo.hidden = false;
+    empty.style.display = "none";
+  };
+  photo.onerror = () => {
+    photo.hidden = true;
+    empty.style.display = "block";
+  };
+  photo.src = place.photo;
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+  document.getElementById("close").focus();
+}
+
+function closePlace() {
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll("[data-place]").forEach(element => {
+  element.addEventListener("click", () => openPlace(element.dataset.place));
+
+  if (element.classList.contains("hotspot")) {
+    element.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openPlace(element.dataset.place);
+      }
+    });
+  }
+});
+
+document.getElementById("close").addEventListener("click", closePlace);
+modal.addEventListener("click", event => {
+  if (event.target === modal) closePlace();
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closePlace();
+});
+</script>
+</body>
+</html>
