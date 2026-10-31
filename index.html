@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -21,14 +22,9 @@
 * { box-sizing:border-box; }
 
 html {
-  scroll-behavior: smooth;
-  background: #071625;
-  overscroll-behavior-y: none;
-}
-
-body {
-  overscroll-behavior-y: none;
-  background-color: #071625;
+  scroll-behavior:smooth;
+  background:#071625;
+  overscroll-behavior-y:none;
 }
 
 body {
@@ -42,10 +38,10 @@ body {
     radial-gradient(ellipse at 50% 0%,#194664 0%,transparent 55%),
     radial-gradient(ellipse at bottom,#102c43 0%,var(--bg) 65%);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overscroll-behavior-y:none;
 }
 
 button { -webkit-tap-highlight-color:transparent; }
-
 main { width:min(900px,100%); margin:auto; }
 
 header {
@@ -87,22 +83,18 @@ h1 {
 }
 
 .hotspot { cursor:pointer; outline:none; }
-
 .hotspot .halo {
   fill:var(--gold);
   opacity:.2;
   transition:opacity .2s ease;
 }
-
 .hotspot .dot {
   fill:#f8d995;
   stroke:#fff2c9;
   stroke-width:1.5;
 }
-
 .hotspot:hover .halo,
 .hotspot:focus .halo { opacity:.65; }
-
 .hotspot:focus-visible .dot {
   stroke:white;
   stroke-width:3;
@@ -142,11 +134,12 @@ h1 {
   border-color:var(--gold);
   background:#173c59;
 }
-
 .place:active { transform:scale(.98); }
-
-.place strong { display:block; font-size:14px; overflow-wrap:anywhere; }
-
+.place strong {
+  display:block;
+  font-size:14px;
+  overflow-wrap:anywhere;
+}
 .place small {
   display:block;
   color:var(--muted);
@@ -176,7 +169,6 @@ footer {
   -webkit-backdrop-filter:blur(12px);
   backdrop-filter:blur(12px);
 }
-
 .modal.open { display:grid; }
 
 .dialog {
@@ -287,21 +279,11 @@ footer {
 
 @media(max-width:620px) {
   body { padding-left:10px; padding-right:10px; }
-
   .places { grid-template-columns:repeat(2,minmax(0,1fr)); }
-
   .place { padding:14px; }
-
   .dialog { padding:12px; border-radius:18px; }
-
   .dialog h2 { font-size:25px; }
-
-  .wish {
-    padding:14px;
-    font-size:15px;
-    line-height:1.75;
-  }
-
+  .wish { padding:14px; font-size:15px; line-height:1.75; }
   .place-label { font-size:11px; }
 }
 
@@ -325,22 +307,18 @@ footer {
   </header>
 
   <section class="shell" aria-label="Карта особенных мест">
-
     <svg class="globe" viewBox="0 0 520 430"
          role="img" aria-label="Глобус с шестью отмеченными местами">
-
       <defs>
         <radialGradient id="sea" cx="33%" cy="24%" r="78%">
           <stop offset="0%" stop-color="#347ba4"/>
           <stop offset="55%" stop-color="#155071"/>
           <stop offset="100%" stop-color="#071c31"/>
         </radialGradient>
-
         <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stop-color="#a8d0bd"/>
           <stop offset="100%" stop-color="#548e8a"/>
         </linearGradient>
-
         <clipPath id="sphere">
           <circle cx="260" cy="210" r="176"/>
         </clipPath>
@@ -375,7 +353,6 @@ footer {
         </g>
       </g>
 
-      <!-- Питтсбург -->
       <g class="hotspot" role="button" tabindex="0"
          aria-label="Питтсбург" data-place="pittsburgh">
         <circle class="halo" cx="160" cy="129" r="12"/>
@@ -384,7 +361,6 @@ footer {
         <text class="place-label" x="116" y="109" text-anchor="end">Питтсбург</text>
       </g>
 
-      <!-- Беларусь -->
       <g class="hotspot" role="button" tabindex="0"
          aria-label="Беларусь" data-place="belarus">
         <circle class="halo" cx="307" cy="112" r="12"/>
@@ -393,7 +369,6 @@ footer {
         <text class="place-label" x="346" y="89">Беларусь</text>
       </g>
 
-      <!-- Кавказ -->
       <g class="hotspot" role="button" tabindex="0"
          aria-label="Кавказ" data-place="caucasus">
         <circle class="halo" cx="322" cy="151" r="12"/>
@@ -402,7 +377,6 @@ footer {
         <text class="place-label" x="361" y="140">Кавказ</text>
       </g>
 
-      <!-- Кипр -->
       <g class="hotspot" role="button" tabindex="0"
          aria-label="Кипр" data-place="cyprus">
         <circle class="halo" cx="290" cy="163" r="12"/>
@@ -411,7 +385,6 @@ footer {
         <text class="place-label" x="253" y="185" text-anchor="end">Кипр</text>
       </g>
 
-      <!-- Китай -->
       <g class="hotspot" role="button" tabindex="0"
          aria-label="Китай" data-place="china">
         <circle class="halo" cx="370" cy="161" r="12"/>
@@ -420,7 +393,6 @@ footer {
         <text class="place-label" x="409" y="181">Китай</text>
       </g>
 
-      <!-- Мальдивы -->
       <g class="hotspot" role="button" tabindex="0"
          aria-label="Мальдивы" data-place="maldives">
         <circle class="halo" cx="321" cy="253" r="12"/>
@@ -428,41 +400,27 @@ footer {
         <path d="M321 253L349 276" stroke="#e5c98c"/>
         <text class="place-label" x="353" y="282">Мальдивы</text>
       </g>
-
     </svg>
 
     <div class="places">
-
       <button class="place" type="button" data-place="belarus">
-        <strong>Беларусь</strong>
-        <small>Европа</small>
+        <strong>Беларусь</strong><small>Европа</small>
       </button>
-
       <button class="place" type="button" data-place="cyprus">
-        <strong>Кипр</strong>
-        <small>Средиземное море</small>
+        <strong>Кипр</strong><small>Средиземное море</small>
       </button>
-
       <button class="place" type="button" data-place="maldives">
-        <strong>Мальдивы</strong>
-        <small>Индийский океан</small>
+        <strong>Мальдивы</strong><small>Индийский океан</small>
       </button>
-
       <button class="place" type="button" data-place="pittsburgh">
-        <strong>Питтсбург</strong>
-        <small>США</small>
+        <strong>Питтсбург</strong><small>США</small>
       </button>
-
       <button class="place" type="button" data-place="caucasus">
-        <strong>Кавказ</strong>
-        <small>Горы и природа</small>
+        <strong>Кавказ</strong><small>Горы и природа</small>
       </button>
-
       <button class="place" type="button" data-place="china">
-        <strong>Китай</strong>
-        <small>Азия</small>
+        <strong>Китай</strong><small>Азия</small>
       </button>
-
     </div>
   </section>
 
@@ -472,12 +430,9 @@ footer {
 <div class="modal" id="modal" role="dialog" aria-modal="true"
      aria-labelledby="modalTitle" aria-hidden="true">
   <div class="dialog">
-
     <button class="close" id="close" type="button"
             aria-label="Закрыть">×</button>
-
     <h2 id="modalTitle"></h2>
-
     <div class="photo-frame">
       <img id="photo" alt="" hidden>
       <div class="empty" id="empty">
@@ -485,9 +440,7 @@ footer {
         Фото для этого места появится здесь
       </div>
     </div>
-
     <div class="wish" id="wish"></div>
-
   </div>
 </div>
 
@@ -495,37 +448,32 @@ footer {
 const places = {
   belarus: {
     title:"Беларусь",
-    photo:"photos/belarus.jpg",
+    photo:"photos/IMG_0108.jpg",
     wish:"Мама, Беларусь — твоя родина, место, с которым связано многое в твоей жизни. Желаю тебе всегда хранить самые тёплые воспоминания, быть счастливой и чаще улыбаться. Спасибо тебе за всё, что ты для меня делаешь. Я тебя очень люблю! ❤️"
   },
-
   cyprus: {
     title:"Кипр",
-    photo:"photos/cyprus.jpg",
+    photo:"photos/Золотой-закат-над-Кипром.jpg",
     wish:"Мама, желаю тебе столько же тепла, сколько дарит кипрское солнце! ☀️ Пусть будет побольше счастливых дней, интересных путешествий и поводов для улыбки. Желаю тебе поменьше переживаний и побольше моментов, когда ты просто счастлива."
   },
-
   maldives: {
     title:"Мальдивы",
-    photo:"photos/maldives.jpg",
+    photo:"photos/IMG_0105.jpg",
     wish:"Мама, желаю тебе спокойствия, красивых мест и незабываемых впечатлений. 🩵 Пусть у тебя всегда будет время на отдых, путешествия и мечты, которые обязательно сбудутся. И пусть в жизни будет побольше дней, которые хочется запомнить!"
   },
-
   pittsburgh: {
     title:"Питтсбург",
-    photo:"photos/pittsburgh.jpg",
+    photo:"photos/IMG_3723.jpg",
     wish:"Мама, желаю тебе побольше новых впечатлений, интересных мест и крутых приключений! Пусть у тебя всё получается, мечты сбываются, а впереди ждёт ещё много хороших моментов. С днём рождения, мама! ❤️"
   },
-
   caucasus: {
     title:"Кавказ",
-    photo:"photos/caucasus.jpg",
+    photo:"photos/Кавказская-долина-на-закате.jpg",
     wish:"Мама, пусть твоя жизнь будет такой же красивой и величественной, как Кавказские горы! Желаю тебе сил для любых вершин, радости в каждом дне и побольше удивительных путешествий. Пусть впереди ждёт много счастливых открытий! ❤️"
   },
-
   china: {
     title:"Китай",
-    photo:"photos/china.jpg",
+    photo:"photos/IMG_0109.jpg",
     wish:"Мама, желаю тебе открывать для себя новые горизонты, удивляться красоте мира и никогда не переставать мечтать! Пусть каждый новый день приносит что-то хорошее, а жизнь будет наполнена яркими впечатлениями и счастливыми моментами! ❤️"
   }
 };
@@ -544,7 +492,6 @@ function openPlace(id) {
   if (!place) return;
 
   previousFocus = document.activeElement;
-
   title.textContent = place.title;
   wish.textContent = place.wish;
 
@@ -609,4 +556,3 @@ document.addEventListener("keydown",event => {
 </script>
 </body>
 </html>
-
